@@ -26,7 +26,7 @@ const Popular: React.FC = () => {
     }, []);
 
     return(
-        <div>
+        <div style={{ backgroundColor: "#f0f0f0", minHeight: "100vh" }}>
             {isLoading && <div>Loading...</div>}
             <div style={{marginLeft: "20px", overflow: "hidden"}}>
                 <h1 className="text-3xl font-bold mb-4 pt-5">Movie Grid</h1>

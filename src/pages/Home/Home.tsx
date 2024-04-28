@@ -42,7 +42,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div style={{ marginLeft: "20px", overflow: "hidden" }}>
+        <div style={{ marginLeft: "20px", overflow: "hidden", backgroundColor: "#f0f0f0", minHeight: "100vh"}}>
             {isLoading && <div>Loading...</div>}
             <h1 className="text-3xl font-bold mb-4 pt-5">Popular Movies</h1>
             <div className="pb-5">

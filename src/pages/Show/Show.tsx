@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { getMovieInfo } from "../../services";
+import { useParams, useNavigate } from "react-router-dom";
+import { getMovieInfo, getSimilar } from "../../services";
 import { IMovieResponse } from "../../components/MovieCard/types";
 import { MovieInformation } from "../../components/MovieInformation";
+import MovieCarousel from "../../components/MovieCarousel/MovieCarousel";
 
 const Show: React.FC = () => {
     const { id } = useParams();
-    const location = useLocation();
     const navigate = useNavigate();
     const [movie, setMovie] = useState<IMovieResponse | null>(null); 
+    const [similarMovies, setSimilarMovies] = useState<IMovieResponse[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const goBack = () => {
@@ -23,26 +24,43 @@ const Show: React.FC = () => {
             }
         })
 
+        await getSimilar(MoviId).then((data) => {
+            if (data && data.data){
+                setSimilarMovies(data.data.results);
+                setIsLoading(false);
+            }
+        })
+
         .catch((err) => {
             console.log(err);
         })
     };
 
+
     useEffect(()=> {
         setIsLoading(true);
         if (id) {
             getMovieInfoMovies(id);
+            getSimilar(id);
         }
     }, [id]);
 
     return(
-        <div>
+        <div style={{ backgroundColor: "#f0f0f0", minHeight: "100vh" }}>
             {isLoading && <div>Loading...</div>}
-            <div> show: {id} </div>
-            <div> titulo desde state: {location.state?.movie}</div>
             {movie && (
                 <>
-                <MovieInformation {...movie} />  
+                <div className="pt-5 pb-5">
+                    <MovieInformation {...movie} />  
+                </div>
+                <div style={{ marginLeft: "20px", overflow: "hidden" }} className="pt-5">
+                    <h1 className="text-3xl font-bold mb-4 pt-5">Similar Movies</h1>
+                    <div className="pt-5">
+                        {similarMovies?.length > 0 && 
+                            <MovieCarousel movies={similarMovies} />
+                        }
+                    </div>
+                </div>
                 </>
             )}
             <button onClick={goBack}>Ir atrás</button>
