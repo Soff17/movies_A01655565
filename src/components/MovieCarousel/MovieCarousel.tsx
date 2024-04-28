@@ -3,16 +3,20 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { IMovieResponse } from '../MovieCard/types';
 import { MovieCard } from '../MovieCard';
-import { movies } from '../../constants/moviesMock';
 
-const MovieCarousel = () => {
+interface MovieCarouselProps {
+    movies: IMovieResponse[];
+}
+
+const MovieCarousel: React.FC<MovieCarouselProps> = ({ movies }) => {
     return (
         <Swiper
             spaceBetween={10}
             slidesPerView={5}
             pagination={{ clickable: true }}
-            loop={true} 
+            loop={true}
             breakpoints={{
                 1200: { slidesPerView: 5 },
                 1024: { slidesPerView: 4 },

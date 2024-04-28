@@ -5,6 +5,7 @@ import genres from '../../constants/genres.json';
 import '../../index.css';
 import { useNavigate } from 'react-router-dom';
 import { ROTES } from '../../routes/constants';
+import { Pill } from '../Pill';
 
 const MovieCard: React.FC<IMovieCard> = ({
     title,
@@ -44,9 +45,7 @@ const MovieCard: React.FC<IMovieCard> = ({
             <div className="movie-card-content absolute bottom-0 w-full text-white p-4 z-20">
                 <div className="font-bold text-xl mb-2">{title}</div>
                 <div className="text-base pb-2">
-                    <span className="bg-red-900 text-white rounded-full px-2 py-1">
-                        {getGenre(genreId)}
-                    </span>
+                    <Pill title={getGenre(genreId)} color={'red'}></Pill>
                 </div>
                 <div className="text-base">
                     <span role="img" aria-label="star" className='pr-1'>⭐</span>{voteAvergae}/10

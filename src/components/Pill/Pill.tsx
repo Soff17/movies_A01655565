@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { IPill } from './types';
 
-const Pill = () => {
+const Pill: React.FC<IPill> = ({
+  title,
+  color,
+}) => {
   return (
-    <div>Pill</div>
-  )
-}
+    <span className="text-whit px-4 py-1 rounded text-sm" style={{backgroundColor: color}}>
+      {title}
+    </span>
+  );
+};
 
-export default Pill
+export default Pill;

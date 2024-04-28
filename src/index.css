@@ -4,8 +4,8 @@
 
 
 .movie-card {
-  max-height: 400px;
-  min-height: 400px;
+  max-height: 370px;
+  min-height: 370px;
   background-color: black;
   width: calc(100% - 20px);
   max-width: none;
@@ -20,4 +20,11 @@
 
 .movie-card:hover .movie-card-bg {
   transform: scale(1.05);
+}
+
+.movie-genres-and-favorite {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px; /* o el margen que necesites */
 }
