@@ -35,11 +35,13 @@ const MovieCard: React.FC<IMovieCard> = ({
     //useeffect
 
     return (
-        <div className="movie-card max-w-xs bg-white rounded-lg overflow-hidden shadow-md relative"
-        onClick={() => {
-            navigateMovies(movieId, title);
-        }} style={{ backgroundImage: `url(${poster})`, backgroundSize: 'cover' }}>
-            <div className=" movie-card-content absolute bottom-0 w-full text-white p-4">
+        <div className="movie-card max-w-xs bg-black rounded-lg overflow-hidden shadow-md relative"
+            onClick={() => navigateMovies(movieId, title)}
+            style={{ position: 'relative' }}>
+            <div className="movie-card-bg absolute inset-0 bg-no-repeat bg-center bg-cover z-0"
+                 style={{ backgroundImage: `url(${poster})` }}></div>
+            <div className="gradient-layer absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+            <div className="movie-card-content absolute bottom-0 w-full text-white p-4 z-20">
                 <div className="font-bold text-xl mb-2">{title}</div>
                 <div className="text-base pb-2">
                     <span className="bg-red-900 text-white rounded-full px-2 py-1">
@@ -52,6 +54,7 @@ const MovieCard: React.FC<IMovieCard> = ({
             </div>
         </div>
     );
+    
 }
 
 export default MovieCard;

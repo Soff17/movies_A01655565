@@ -14,10 +14,11 @@ const MovieCarousel = () => {
             pagination={{ clickable: true }}
             loop={true} 
             breakpoints={{
-                320: { slidesPerView: 1 },
-                640: { slidesPerView: 2 },
+                1200: { slidesPerView: 5 },
+                1024: { slidesPerView: 4 },
                 768: { slidesPerView: 3 },
-                1024: { slidesPerView: 5 },
+                640: { slidesPerView: 2 },
+                320: { slidesPerView: 1 },
             }}
         >
             {movies.map((movie) => (
