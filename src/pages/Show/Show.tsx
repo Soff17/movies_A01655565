@@ -4,11 +4,12 @@ import { getMovieInfo, getSimilar } from "../../services";
 import { IMovieResponse } from "../../components/MovieCard/types";
 import { MovieInformation } from "../../components/MovieInformation";
 import MovieCarousel from "../../components/MovieCarousel/MovieCarousel";
+import { IMovieDetail } from "./types";
 
 const Show: React.FC = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [movie, setMovie] = useState<IMovieResponse | null>(null); 
+    const [movie, setMovie] = useState<IMovieDetail | null>(null); 
     const [similarMovies, setSimilarMovies] = useState<IMovieResponse[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 

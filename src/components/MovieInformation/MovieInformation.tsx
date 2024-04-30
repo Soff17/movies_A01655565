@@ -1,8 +1,9 @@
 import React from 'react';
-import { IMovieResponse } from '../MovieCard/types';
 import { IMAGE_SOURCE } from '../../constants/moviesMock';
+import { Pill } from '../Pill';
+import { IMovieDetail } from '../../pages/Show/types';
 
-const MovieInformation: React.FC<IMovieResponse> = ({
+const MovieInformation: React.FC<IMovieDetail> = ({
   poster_path,
   original_title,
   overview,
@@ -10,6 +11,7 @@ const MovieInformation: React.FC<IMovieResponse> = ({
   release_date,
   vote_average,
   vote_count,
+  genres: genres_ids,
 }) => {
     
   return (
@@ -48,6 +50,9 @@ const MovieInformation: React.FC<IMovieResponse> = ({
                 </div>
                     <div className="movie-genres-and-favorite">
                         <div className="genres">
+                        {genres_ids?.map((genre, index) => (
+                                <Pill key={index} title={genre.name} color={'red'} />
+                            ))}
                         </div>
                         <div className="favorite-button">
                             <button className="add-to-favorites">
