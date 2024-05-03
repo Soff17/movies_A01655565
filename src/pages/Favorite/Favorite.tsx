@@ -28,22 +28,25 @@ const Favorite = () => {
             setShow(newShows);
             setLoading(false);
             
+            
         }
 
     }
 
     useEffect(() => {
-        setLoading(false);
+        setLoading(true);
         runGetFavorite();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     return(
         <div>
             {!loading? (
                 <div>
-                    <h1>Favorites</h1>
                     {favorites && favorites.length > 0 ? (
-                        <div>
+                        <div style={{marginLeft: "20px", overflow: "hidden"}}>
+                        <h1 className="text-3xl font-bold mb-4 pt-5">My favorites</h1>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                             {show && show.map((show:IMovieDetail) => (
                                 <MovieCard key={show.id}
                                 movieId={show.id}
@@ -53,6 +56,8 @@ const Favorite = () => {
                                 posterPath={show.poster_path}/>
                             ))}
                         </div>
+                    </div>
+                        
                     ) : (
                         <div>
                             <h2>No hay favoritos</h2>

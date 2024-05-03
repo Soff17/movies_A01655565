@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { IMAGE_SOURCE } from '../../constants/moviesMock';
 import { Pill } from '../Pill';
 import { IMovieDetail } from '../../pages/Show/types';
 
 const MovieInformation: React.FC<IMovieDetail> = ({
+    id,
   poster_path,
   original_title,
   overview,
@@ -13,6 +14,35 @@ const MovieInformation: React.FC<IMovieDetail> = ({
   vote_count,
   genres: genres_ids,
 }) => {
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [favorites, setFavorites] = useState<string[]>([]);  // Estado espera un array de strings
+
+    useEffect(() => {
+        const favs = JSON.parse(localStorage.getItem('favorites') || '[]') as (string | number)[];
+        const stringFavs = favs.map(fav => String(fav));  // Convertimos todos los elementos a strings
+        setFavorites(stringFavs);
+        setIsFavorite(stringFavs.includes(String(id)));  // Aseguramos que id sea string
+    }, [id]);
+
+    const addFavorite = () => {
+        const stringId = String(id);  // Convertimos id a string
+        if (!favorites.includes(stringId)) {
+            const newFavorites = [...favorites, stringId];
+            setFavorites(newFavorites);
+            setIsFavorite(true);
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        }
+    };
+
+    const removeFavorite = () => {
+        const stringId = String(id);
+        if (favorites.includes(stringId)) {
+            const newFavorites = favorites.filter(favId => favId !== stringId);
+            setFavorites(newFavorites);
+            setIsFavorite(false);
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        }
+    };
     
   return (
     <div className="bg-white shadow-[0_2px_15px_-6px_rgba(0,0,0,0.2)] py-12 px-10 w-full max-w-5xl rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
@@ -54,16 +84,19 @@ const MovieInformation: React.FC<IMovieDetail> = ({
                             <Pill key={index} title={genre.name} color={'red'} />
                         ))}
                     </div>
-                        (isFavorite?)(
-                            <div className="flex flex-col justify-end">
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <div className="flex flex-col justify-end">
+                        {isFavorite ? (
+                            <button onClick={removeFavorite} className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Remove from Favorites
+                            </button>
+                        ) : (
+                            <button onClick={addFavorite} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Add to Favorites
                             </button>
-                        </div>
-                        )
+                        )}
+                    </div>
                 </div>
             </div>
-            
         </div>
     </div>
   );
