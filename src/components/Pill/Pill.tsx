@@ -6,7 +6,7 @@ const Pill: React.FC<IPill> = ({
   color,
 }) => {
   return (
-    <span className="text-whit px-4 py-1 rounded text-sm" style={{backgroundColor: color}}>
+    <span className="text-whit px-4 py-1 rounded text-sm" style={{backgroundColor: color, marginRight: "8px", color:"white"}}>
       {title}
     </span>
   );

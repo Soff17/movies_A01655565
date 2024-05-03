@@ -48,18 +48,20 @@ const MovieInformation: React.FC<IMovieDetail> = ({
                         </svg><p className="pl-1 text-sm">{vote_count}</p>
                     </span>
                 </div>
-                    <div className="movie-genres-and-favorite">
-                        <div className="genres">
+                <div className="grid grid-cols-2 gap-4 items-center">
+                    <div className="flex flex-wrap gap-2">
                         {genres_ids?.map((genre, index) => (
-                                <Pill key={index} title={genre.name} color={'red'} />
-                            ))}
-                        </div>
-                        <div className="favorite-button">
-                            <button className="add-to-favorites">
+                            <Pill key={index} title={genre.name} color={'red'} />
+                        ))}
+                    </div>
+                        (isFavorite?)(
+                            <div className="flex flex-col justify-end">
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Add to Favorites
                             </button>
                         </div>
-                    </div>    
+                        )
+                </div>
             </div>
             
         </div>
