@@ -33,7 +33,12 @@ const MovieCard: React.FC<IMovieCard> = ({
         // estado {state: { movieName }
         //url ${ROTES.SHOW}${id}
     }
-    //useeffect
+    
+    const getVoteColor = (vote: number): string => {
+        if (vote < 5) return 'red';
+        if (vote >= 5 && vote <= 7) return 'orange';
+        return 'green';
+    };
 
     return (
         <div className="movie-card max-w-xs bg-black rounded-lg overflow-hidden shadow-md relative"
@@ -45,7 +50,7 @@ const MovieCard: React.FC<IMovieCard> = ({
             <div className="movie-card-content absolute bottom-0 w-full text-white p-4 z-20">
                 <div className="font-bold text-xl mb-2">{title}</div>
                 <div className="text-base pb-2">
-                    <Pill title={getGenre(genreId)} color={'red'}></Pill>
+                    <Pill title={getGenre(genreId)} color={getVoteColor(voteAvergae)} />
                 </div>
                 <div className="text-base">
                     <span role="img" aria-label="star" className='pr-1'>⭐</span>{voteAvergae}/10

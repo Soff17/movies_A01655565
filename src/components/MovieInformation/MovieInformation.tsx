@@ -43,6 +43,12 @@ const MovieInformation: React.FC<IMovieDetail> = ({
             localStorage.setItem('favorites', JSON.stringify(newFavorites));
         }
     };
+
+    const getVoteColor = (vote: number): string => {
+        if (vote < 5) return 'red';
+        if (vote >= 5 && vote <= 7) return 'orange';
+        return 'green';
+    };
     
   return (
     <div className="bg-white shadow-[0_2px_15px_-6px_rgba(0,0,0,0.2)] py-12 px-10 w-full max-w-5xl rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
@@ -81,7 +87,7 @@ const MovieInformation: React.FC<IMovieDetail> = ({
                 <div className="grid grid-cols-2 gap-4 items-center">
                     <div className="flex flex-wrap gap-2">
                         {genres_ids?.map((genre, index) => (
-                            <Pill key={index} title={genre.name} color={'red'} />
+                            <Pill key={index} title={genre.name} color={getVoteColor(vote_average)} />
                         ))}
                     </div>
                     <div className="flex flex-col justify-end">
