@@ -3,13 +3,16 @@ import type { Preview } from "@storybook/react";
 
 const preview: Preview = {
   parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
+    viewport: {
+        defaultViewport: "responsive", // Set the default viewport
     },
-  },
+    controls: {
+        matchers: {
+            color: /(background|color)$/i,
+            date: /Date$/i,
+        },
+    },
+},
 };
 
 export default preview;

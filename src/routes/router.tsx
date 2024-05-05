@@ -1,5 +1,6 @@
 import {RouteObject, createBrowserRouter} from "react-router-dom";
 import PrivateRouter from "./PrivateRouter";
+import PublicRouter from "./PublicRouter";
 import { ROTES } from "./constants";
 import { Home } from "../pages/Home";
 import { Popular } from "../pages/Popular";
@@ -38,6 +39,12 @@ const routes: RouteObject[] = [
                 element: <Show />,
             },
         ],
+    },
+    {
+        path: '/admin', element: <PublicRouter />,
+        children: [
+            {path: '/admin', element: <Home />}
+        ]
     },
 ];
 

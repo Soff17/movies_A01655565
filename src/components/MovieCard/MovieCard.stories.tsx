@@ -17,7 +17,7 @@ const meta= {
         }
     },
     argTypes:{
-        title: {control: 'number'},
+        title: {control: 'text'},
         genreId: {control: 'number'},
         movieId: {control: 'number'},
         voteAvergae: {control: 'number'},
@@ -29,10 +29,6 @@ const meta= {
 export default meta;
 
 const Template: StoryFn<IMovieCard> = (args) => <MovieCard {...args} />
-
-/**
- * Default story of MovieCard
-**/
 
 export const Default = Template.bind({});
 Default.args = {

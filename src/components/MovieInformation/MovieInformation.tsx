@@ -92,7 +92,7 @@ const MovieInformation: React.FC<IMovieDetail> = ({
                     </div>
                     <div className="flex flex-col justify-end">
                         {isFavorite ? (
-                            <button onClick={removeFavorite} className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <button onClick={removeFavorite} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                 Remove from Favorites
                             </button>
                         ) : (

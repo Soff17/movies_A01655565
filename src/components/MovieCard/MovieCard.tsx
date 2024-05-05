@@ -14,12 +14,11 @@ const MovieCard: React.FC<IMovieCard> = ({
     voteAvergae,
     posterPath,
 }) => {
-    //hooks
+
     const navigate = useNavigate();
-    //state
-    //constante que no sea estado
+
     const poster = IMAGE_SOURCE + posterPath;
-    //funciones
+
     const getGenre = (genreId: number): string => {
         const key = Object.values(genres.genres).find(genre => genre.id === genreId);
         if (key) {
@@ -30,8 +29,6 @@ const MovieCard: React.FC<IMovieCard> = ({
 
     const navigateMovies = (id: number, movieName: string) => {
         navigate(`${ROTES.SHOW}${id}`, {state: { movieName }});
-        // estado {state: { movieName }
-        //url ${ROTES.SHOW}${id}
     }
     
     const getVoteColor = (vote: number): string => {
